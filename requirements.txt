@@ -1,3 +1,7 @@
 pytube
 tenacity==8.2.2
 openai==0.27.4
+pandas==1.3.3
+sqlalchemy<2.0.0
+psycopg2-binary
+python-dotenv
