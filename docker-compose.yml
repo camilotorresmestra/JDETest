@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  postgres:
+    user: root
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_HOST=${db_host}
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_USER=${db_user}
+      - POSTGRES_DB=${db_name}
+    volumes:
+      - "etl_volume:/var/lib/postgresql/data"
+    networks:
+      - jde_test_network
+  pgadmin:
+    user: root
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${pg_admin_email}
+      PGADMIN_DEFAULT_PASSWORD: ${pg_admin_password}
+    ports:
+      - "8080:80"
+    volumes:
+      - "etl_volume:/var/lib/pgadmin"
+    depends_on:
+      - postgres
+    networks:
+      - jde_test_network
+  jdetest:
+    image: jdetest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    networks:
+      - jde_test_network
+    depends_on:
+      - postgres
+
+networks:
+  jde_test_network:
+    driver: bridge
+volumes:
+  etl_volume:
+
