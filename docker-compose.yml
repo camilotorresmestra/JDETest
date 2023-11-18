@@ -29,10 +29,10 @@ services:
     networks:
       - jde_test_network
   jdetest:
-    image: jdetest
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: ghcr.io/camilotorresmestra/jdetest:latest
+    # build:
+    #   context: .
+    #   dockerfile: ./Dockerfile
     networks:
       - jde_test_network
     depends_on:
