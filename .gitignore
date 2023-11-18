@@ -1,2 +1,6 @@
 .venv
+configs/*
 creds
+.devcontainer
+.vscode
+__pycache__

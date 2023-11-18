@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  jdetest:
+    image: jdetest
+    build:
+      context: .
+      dockerfile: ./Dockerfile
